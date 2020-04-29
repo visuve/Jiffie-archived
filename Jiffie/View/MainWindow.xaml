@@ -7,7 +7,6 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <DockPanel Margin="10">
-
         <!-- Path & Extension -->
         <Grid DockPanel.Dock="Top">
             <Grid.ColumnDefinitions>
@@ -21,11 +20,12 @@
             </Grid.RowDefinitions>
 
             <Label Grid.Column="0" Grid.Row="0" Content="Path" />
-            <TextBox Grid.Column="1" Grid.Row="0" Text="X:\Example\" />
-            <Button Grid.Column="2" Grid.Row="0" Content="Browse" />
+            <TextBox Grid.Column="1" Grid.Row="0" Text="{Binding JunkDirectory}" />
+            <Button Grid.Column="2" Grid.Row="0" Content="Browse" Command="{Binding BrowseJunkDirectory}" />
 
             <Label Grid.Column="0" Grid.Row="1" Content="Extension" />
-            <TextBox Grid.Column="1" Grid.Row="1" Text=".excess" />
+            <TextBox Grid.Column="1" Grid.Row="1" Text="{Binding JunkExtension}" />
+            <Button Grid.Column="2" Grid.Row="1" Content="Run" Command="{Binding RunSearch}" />
         </Grid>
 
         <!-- Select All & Delete-->
@@ -33,15 +33,26 @@
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="100" />
                 <ColumnDefinition Width="100" />
+                <ColumnDefinition Width="100" />
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto" />
             </Grid.RowDefinitions>
-            <Button Grid.Column="0" Grid.Row="0" Content="Select All" />
-            <Button Grid.Column="1" Grid.Row="0" Content="Delete" />
+            
+            <Button Grid.Column="0" Grid.Row="0" Content="Select All" Command="{Binding SelectAllFiles}" />
+            <Button Grid.Column="1" Grid.Row="0" Content="Deselect All" Command="{Binding DeselectAllFiles}" />
+            <Button Grid.Column="2" Grid.Row="0" Content="Delete Selected" Command="{Binding DeleteSelectedFiles}" />
         </Grid>
 
         <!-- File list -->
-        <ListBox />
+        <ListBox ItemsSource="{Binding JunkFiles}">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel>
+                        <CheckBox Content="{Binding Info.FullName}" IsChecked="{Binding IsSelected}"/>
+                    </StackPanel>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
     </DockPanel>
 </Window>

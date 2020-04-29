@@ -1,8 +1,8 @@
-﻿<Application x:Class="Jiffie.App"
+<Application x:Class="Jiffie.App"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:local="clr-namespace:Jiffie"
-             StartupUri="MainWindow.xaml">
+             StartupUri="View/MainWindow.xaml">
     <Application.Resources>
          
     </Application.Resources>
