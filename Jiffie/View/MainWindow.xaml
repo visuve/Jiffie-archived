@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Jiffie"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="Jiffie" Height="450" Width="800">
     <DockPanel Margin="10">
         <!-- Path & Extension -->
         <Grid DockPanel.Dock="Top">
