@@ -14,5 +14,4 @@
 
 ## TODO:
 
-- Make searching asynchronic
 - Implement directory dialog from "Browse" button 

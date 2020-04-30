@@ -7,16 +7,16 @@ namespace Jiffie
     internal class RelayCommand : ICommand
     {
         private readonly Predicate<object> canExecute;
-        private readonly Action<object> execute;
+        private readonly Action<object> command;
 
         internal RelayCommand(Action<object> execute)
             : this(execute, null)
         {
         }
 
-        internal RelayCommand(Action<object> execute, Predicate<object> canExecute)
+        internal RelayCommand(Action<object> command, Predicate<object> canExecute)
         {
-            this.execute = execute;
+            this.command = command;
             this.canExecute = canExecute;
         }
 
@@ -34,7 +34,7 @@ namespace Jiffie
 
         public void Execute(object parameter)
         {
-            this.execute(parameter);
+            this.command(parameter);
         }
     }
 }

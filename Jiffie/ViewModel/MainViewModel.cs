@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text.RegularExpressions;
 using System.Windows;
 using System.Windows.Input;
+using System.Windows.Threading;
 
 namespace Jiffie
 {
@@ -94,7 +95,8 @@ namespace Jiffie
 
                         foreach (FileInfo file in directory.EnumerateFiles(junkExtension, SearchOption.AllDirectories))
                         {
-                            JunkFiles.Add(new FileModel(file, false));
+                            var addItem = new Action(() => JunkFiles.Add(new FileModel(file, false)));
+                            Application.Current.Dispatcher.Invoke(DispatcherPriority.Background, addItem);
                         }
 
                         isRunningSearch = false;
