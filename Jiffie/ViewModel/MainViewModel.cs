@@ -5,9 +5,10 @@ using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Text.RegularExpressions;
-using System.Windows;
 using System.Windows.Input;
 using System.Windows.Threading;
+using System.Windows.Forms;
+using Application = System.Windows.Application;
 
 namespace Jiffie
 {
@@ -59,7 +60,14 @@ namespace Jiffie
                 {
                     browseJunkDirectory = new RelayCommand(x =>
                     {
-                        Debug.WriteLine("No support for open file dialog...");
+                        using (var folderDialog = new FolderBrowserDialog())
+                        {
+                            if (folderDialog.ShowDialog() == DialogResult.OK)
+                            {
+                                JunkDirectory = folderDialog.SelectedPath;
+                            }
+                        }
+
                     }, x => !isRunningSearch);
                 }
 
@@ -100,9 +108,15 @@ namespace Jiffie
                         }
 
                         isRunningSearch = false;
-                        string message = junkFiles.Count > 0 ? $"Search finished. Found {junkFiles.Count} files." : "Search finished. Nothing found.";
+                        string message = junkFiles.Count > 0 ?
+                            $"Search finished. Found {junkFiles.Count} files." :
+                            "Search finished. Nothing found.";
+
                         MessageBox.Show(message, "Jiffie");
-                    }, x => !isRunningSearch && !string.IsNullOrEmpty(junkDirectory) && Directory.Exists(junkDirectory) && IsWildcardExtension(junkExtension));
+                    }, x => !isRunningSearch &&
+                        !string.IsNullOrEmpty(junkDirectory) &&
+                        Directory.Exists(junkDirectory) &&
+                        IsWildcardExtension(junkExtension));
                 }
 
                 return runSearch;
@@ -211,7 +225,8 @@ namespace Jiffie
 
                         if (failed.Count > 0)
                         {
-                            MessageBox.Show("Exceptions occurred while trying to delete:\n" + string.Join('\n', failed), "Errors occurred");
+                            MessageBox.Show("Exceptions occurred while trying to delete:\n" +
+                                string.Join('\n', failed), "Errors occurred");
                         }
 
                         string message = $"Removed {removedCount} files.";

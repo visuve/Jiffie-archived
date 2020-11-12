@@ -11,7 +11,3 @@
 - Visual Studio 2019
     - https://www.visualstudio.com/
     - .NET desktop development & .NET Core cross-platform development workloads selected
-
-## TODO:
-
-- Implement directory dialog from "Browse" button 
