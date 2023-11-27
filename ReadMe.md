@@ -1,3 +1,5 @@
+## NOTE: this repository is archived and no longer maintained. Migration from netcoreapp3.1 (no longer maintained) to net8.0-windows simply broke the whole application. Will be written in Qt soon(ish).
+
 # Jiffie - A Junk File Finder
 
 - Cleanup e.g. your development directory from unnecessary files by file extension
